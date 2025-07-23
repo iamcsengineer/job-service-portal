@@ -1,0 +1,5 @@
+#Importants SQL Command
+#ALTER TABLE your_table_name
+#MODIFY response LONGTEXT
+#CHARACTER SET utf8mb4
+#COLLATE utf8mb4_unicode_ci;
