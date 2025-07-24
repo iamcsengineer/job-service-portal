@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.microservice.job.service.portal.entities.RapidAPIRecord;
+import com.microservice.job.service.portal.pojos.JobResponse;
 import com.microservice.job.service.portal.service.JobPortalService;
 
 @RestController
@@ -16,7 +16,7 @@ public class JobPortalController {
 	private JobPortalService jobPortalService;
 	
 	@GetMapping("/job-search")
-	public RapidAPIRecord callingJobPortalService() {
+	public JobResponse callingJobPortalService() {
 		return jobPortalService.callingRapidAPI();
 		
 	}
