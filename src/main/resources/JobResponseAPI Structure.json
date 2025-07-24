@@ -1,0 +1,122 @@
+{
+  "status": "OK",
+  "request_id": "474b9998-1ef8-485a-a930-2f4546974786",
+  "parameters": {
+    "query": "developer jobs in chicago",
+    "page": 1,
+    "num_pages": 1,
+    "date_posted": "all",
+    "country": "us",
+    "language": "en"
+  },
+  "data": [
+    {
+      "job_id": "yfWSkh8uw66cI9AvAAAAAA==",
+      "job_title": "Front End Engineer/ UI Developer, Design System :: Chicago, Illinois (3 days Hybrid)",
+      "employer_name": "Jobs via Dice",
+      "employer_logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9CC1NlnLA7sshF1s1dqKvk8U495jsMwImnyPP&s=0",
+      "employer_website": null,
+      "job_publisher": "LinkedIn",
+      "job_employment_type": "Full-time",
+      "job_employment_types": [
+        "FULLTIME"
+      ],
+      "job_apply_link": "https://www.linkedin.com/jobs/view/front-end-engineer-ui-developer-design-system-chicago-illinois-3-days-hybrid-at-jobs-via-dice-4271356311?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "job_apply_is_direct": false,
+      "apply_options": [
+        {
+          "publisher": "LinkedIn",
+          "apply_link": "https://www.linkedin.com/jobs/view/front-end-engineer-ui-developer-design-system-chicago-illinois-3-days-hybrid-at-jobs-via-dice-4271356311?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        },
+        {
+          "publisher": "Dice",
+          "apply_link": "https://www.dice.com/job-detail/25f8491f-1d46-4d4f-a2c9-b4feed64e019?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": true
+        },
+        {
+          "publisher": "LazyApply",
+          "apply_link": "https://lazyapply.com/jobpreview/25f8491f-1d46-4d4f-a2c9-b4feed64e019?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": true
+        },
+        {
+          "publisher": "Adzuna",
+          "apply_link": "https://www.adzuna.com/details/5319837614?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": true
+        },
+        {
+          "publisher": "Recruit.net",
+          "apply_link": "https://www.recruit.net/job/front-end-engineer-ui-developer-jobs/C3A1AD5C24D68BD6?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+          "is_direct": false
+        }
+      ],
+      "job_description": "Dice is the leading career destination for tech experts at every stage of their careers. Our client, Stellent IT LLC, is seeking the following. Apply via Dice today!\n\nJob Title Front End Engineer/ UI Developer, Design System\n\nLocation Chicago, Illinois (3 days Hybrid)\n\nDuration 6 months\n\nMust have LinkedIn with picture\n• Please Add portfolio & github links at the top of the resume**\n\nJob Description\n\nTop Skills:\n• UI components -HTML, CSS, JS\n• Typescript, React framework, CSS framework\n• Industry best practices\n• Detail oriented\n\nFurther Detail:\n• Looking Front End engineer for Design System Team, working closely with Product team.\n• UI Development, HTML, CSS, JS, React, Typescript, etc. Repositories like GitHub and source control.\n• Should have experience with configuring UI components and building new features.\n• No design tool exp. needed. GitHub or portfolio link is not mandatory but will be discussed in interview.\n• Strong knowledge on CSS frameworks and CSS processors. Understanding software engineering best practices.\n• Product documentation, support design and backend team. Ok with UI Developer if they are not too heavy on backend.\n\nProject Overview:\n\nExperience Design & Research is a multidisciplinary design and research team dedicated to delivering innovative, differentiated, and exceptional experiences for clients, prospects, and partners by demonstrating a deep understanding of their needs. Experience Design & Research is committed to growing and supporting a diverse team, with a collaborative environment that provides educational and career growth opportunities.\n\nRole:\n\nAs a Front End Engineer in our Design System team, contractor will side by side with design and product teams to build frontend experiences. They work will elevate our digital experiences through compelling prototypes, patterns, and components that empower our partners and clients. A detail-oriented systems thinker, they can see tough challenges from multiple perspectives and uncover the technical solutions to solve design and business needs.\n\nExperience Level: Mid to Senior (5-7 Years of Experience)\n\nQualifications:\n• A minimum of 5 years of front-end UI development experience, writing semantic HTML, CSS, ES6 JavaScript and Typescript\n• Strong knowledge on Typescript and React framework\n• Strong knowledge on CSS frameworks and CSS processors\n• Demonstrate deep understanding and advocacy on software engineering best practices\n• Proven experience on writing unit test and Test Driven Development\n• Experience with debugging and browser performance optimization\n• Experience using GIT and source control workflows with multiple contributors\n• Experience with Node, Webpack, and NPM libraries\n• Practical understanding of accessibility standards and WCAG 2.1 compliance\n• Attention to detail, having a sense of design and layout\n• Excellent verbal and written communication skills (the ability to effectively sell an idea)\n• Ability to manage time wisely given competing priorities, meet agreed upon deadlines, and be accountable for work\n• Experience in working with a cross-functional team or large-scale software development lifecycle, including waterfall and (more importantly) agile methodologies\n• Work portfolio (applications, code samples) that demonstrates systematic and creative development thinking as well as a deep understanding of UI development best practices\n\nNice to Haves:\n• Past experience working in a design system team\n• Experience with end-to-end testing\n• Experience with mobile device testing frameworks\n\nTasks & Responsibilities:\n• Develops reusable/configurable components in React and Typescript\n• Contributes back to our design system in the form of components, documentation, best practices, and supports.\n• Exhibits deep understanding of HTML, CSS, and JavaScript/Typescript to help support implementation team with best practices\n• Contributes to an open culture that enables development through direct but kind feedback, promotes diverse perspectives and fosters a sense of curiosity and optimism.\n• Manages expectations and deliver effective, efficient, and thoughtful technical solutions.\n• Collaborates and communicate professionally with designers, product owners and architects to understand technical needs and user requirements while effectively communicating the complexity, intent, and specifications of development tasks\n\nAkshit Sisonia - Sr. Technical Recruiter\n\nEmail -\n\nLinkedIn -\n\nSTELLENT IT A Nationally Recognized Minority Certified Enterprise\n\n\"Happiness can be found, even in the darkest of times, if one only remembers to turn on the light.\"\n• JK Rowling",
+      "job_is_remote": false,
+      "job_posted_at": "23 hours ago",
+      "job_posted_at_timestamp": 1753290000,
+      "job_posted_at_datetime_utc": "2025-07-23T17:00:00.000Z",
+      "job_location": "Chicago, IL",
+      "job_city": "Chicago",
+      "job_state": "Illinois",
+      "job_country": "US",
+      "job_latitude": 41.88325,
+      "job_longitude": -87.6323879,
+      "job_benefits": null,
+      "job_google_link": "https://www.google.com/search?q=jobs&gl=us&hl=en&udm=8#vhid=vt%3D20/docid%3DyfWSkh8uw66cI9AvAAAAAA%3D%3D&vssid=jobs-detail-viewer",
+      "job_salary": null,
+      "job_min_salary": null,
+      "job_max_salary": null,
+      "job_salary_period": null,
+      "job_highlights": {
+        "Qualifications": [
+          "Must have LinkedIn with picture",
+          "UI components -HTML, CSS, JS",
+          "Typescript, React framework, CSS framework",
+          "Industry best practices",
+          "Detail oriented",
+          "UI Development, HTML, CSS, JS, React, Typescript, etc",
+          "No design tool exp. needed",
+          "GitHub or portfolio link is not mandatory but will be discussed in interview",
+          "A detail-oriented systems thinker, they can see tough challenges from multiple perspectives and uncover the technical solutions to solve design and business needs",
+          "Experience Level: Mid to Senior (5-7 Years of Experience)",
+          "A minimum of 5 years of front-end UI development experience, writing semantic HTML, CSS, ES6 JavaScript and Typescript",
+          "Strong knowledge on Typescript and React framework",
+          "Strong knowledge on CSS frameworks and CSS processors",
+          "Demonstrate deep understanding and advocacy on software engineering best practices",
+          "Proven experience on writing unit test and Test Driven Development",
+          "Experience with debugging and browser performance optimization",
+          "Experience using GIT and source control workflows with multiple contributors",
+          "Experience with Node, Webpack, and NPM libraries",
+          "Practical understanding of accessibility standards and WCAG 2.1 compliance",
+          "Attention to detail, having a sense of design and layout",
+          "Excellent verbal and written communication skills (the ability to effectively sell an idea)",
+          "Ability to manage time wisely given competing priorities, meet agreed upon deadlines, and be accountable for work",
+          "Experience in working with a cross-functional team or large-scale software development lifecycle, including waterfall and (more importantly) agile methodologies",
+          "Work portfolio (applications, code samples) that demonstrates systematic and creative development thinking as well as a deep understanding of UI development best practices",
+          "Past experience working in a design system team",
+          "Experience with end-to-end testing",
+          "Experience with mobile device testing frameworks"
+        ],
+        "Responsibilities": [
+          "Looking Front End engineer for Design System Team, working closely with Product team",
+          "Repositories like GitHub and source control",
+          "Should have experience with configuring UI components and building new features",
+          "Strong knowledge on CSS frameworks and CSS processors. Understanding software engineering best practices",
+          "Product documentation, support design and backend team",
+          "Ok with UI Developer if they are not too heavy on backend",
+          "Experience Design & Research is a multidisciplinary design and research team dedicated to delivering innovative, differentiated, and exceptional experiences for clients, prospects, and partners by demonstrating a deep understanding of their needs",
+          "As a Front End Engineer in our Design System team, contractor will side by side with design and product teams to build frontend experiences",
+          "They work will elevate our digital experiences through compelling prototypes, patterns, and components that empower our partners and clients",
+          "Develops reusable/configurable components in React and Typescript",
+          "Contributes back to our design system in the form of components, documentation, best practices, and supports",
+          "Exhibits deep understanding of HTML, CSS, and JavaScript/Typescript to help support implementation team with best practices",
+          "Contributes to an open culture that enables development through direct but kind feedback, promotes diverse perspectives and fosters a sense of curiosity and optimism",
+          "Manages expectations and deliver effective, efficient, and thoughtful technical solutions",
+          "Collaborates and communicate professionally with designers, product owners and architects to understand technical needs and user requirements while effectively communicating the complexity, intent, and specifications of development tasks"
+        ]
+      },
+      "job_onet_soc": "15113400",
+      "job_onet_job_zone": "3"
+    },
+   ]
+}

@@ -38,7 +38,7 @@ public class RapidApiClient {
 	public RapidAPIRecord callJobPortalExternalAPI() {
 		
 		// Build dynamic URI
-		URI uri = UriComponentsBuilder.fromUriString(baseUrl).queryParam("query", "developer jobs in india")
+		URI uri = UriComponentsBuilder.fromUriString(baseUrl).queryParam("query", "developer jobs in pune")
 				.queryParam("page", 1).queryParam("num_pages", 1).queryParam("country", "india")
 				.queryParam("date_posted", "all").build().encode().toUri();
 		
@@ -53,7 +53,7 @@ public class RapidApiClient {
 		// Make the GET request
 		ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
 
-		//Saving the External API Response in DB [RapidAPIRecord] for Tracking Purpose
+		// Setting Request and Response in RapidAPIRecord
 		RapidAPIRecord rapidAPIRecord = new RapidAPIRecord();
 		if(response.getBody()!=null) {
 			try {
