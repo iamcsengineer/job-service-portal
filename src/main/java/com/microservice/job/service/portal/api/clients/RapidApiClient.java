@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -16,32 +15,37 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microservice.job.service.portal.entities.RapidAPIRecord;
+import com.microservice.job.service.portal.pojos.JobResponse;
+import com.microservice.job.service.portal.repository.RapidAPIRecordRepository;
 
 @Component
 public class RapidApiClient {
 
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
 	@Autowired
 	private ObjectMapper objectMapper;
+
+	@Autowired
+	private RapidAPIRecordRepository rapidAPIRecordRepository;
 
 	@Value("${job-service-portal.base.url}")
 	private String baseUrl;
 
 	@Value("${job-service-portal.headers.keys}")
 	private String headerKeys;
-	
+
 	@Value("${job-service-portal.headers.values}")
 	private String headerValues;
-	
-	public RapidAPIRecord callJobPortalExternalAPI() {
-		
+
+	public JobResponse callJobPortalExternalAPI() {
+
 		// Build dynamic URI
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl).queryParam("query", "developer jobs in pune")
 				.queryParam("page", 1).queryParam("num_pages", 1).queryParam("country", "india")
 				.queryParam("date_posted", "all").build().encode().toUri();
-		
+
 		// Set headers from properties files
 		HttpHeaders headers = new HttpHeaders();
 		String[] keys = headerKeys.split(",");
@@ -51,19 +55,21 @@ public class RapidApiClient {
 		HttpEntity<String> entity = new HttpEntity<>(headers);
 
 		// Make the GET request
-		ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+		JobResponse jobResponse = restTemplate.exchange(uri, HttpMethod.GET, entity, JobResponse.class).getBody();
 
 		// Setting Request and Response in RapidAPIRecord
 		RapidAPIRecord rapidAPIRecord = new RapidAPIRecord();
-		if(response.getBody()!=null) {
+		if (jobResponse != null) {
 			try {
 				rapidAPIRecord.setRequest(objectMapper.writeValueAsString(entity));
+				rapidAPIRecord.setResponse(objectMapper.writeValueAsString(jobResponse));
+				rapidAPIRecord.setCreatedAt(LocalDateTime.now());
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
-			rapidAPIRecord.setResponse(response.getBody());
-			rapidAPIRecord.setCreatedAt(LocalDateTime.now());
+			// Saving the External API Response in DB [RapidAPIRecord] for Tracking Purpose
+			rapidAPIRecordRepository.save(rapidAPIRecord);
 		}
-		return rapidAPIRecord;
+		return jobResponse;
 	}
 }

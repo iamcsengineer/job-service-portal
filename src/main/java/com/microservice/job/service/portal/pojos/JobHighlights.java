@@ -3,23 +3,23 @@ package com.microservice.job.service.portal.pojos;
 import java.util.List;
 
 public class JobHighlights {
-	private List<String> qualifications;
-	private List<String> responsibilities;
+	private List<String> Qualifications;
+	private List<String> Responsibilities;
 
 	public List<String> getQualifications() {
-		return qualifications;
+		return Qualifications;
 	}
 
 	public void setQualifications(List<String> qualifications) {
-		this.qualifications = qualifications;
+		Qualifications = qualifications;
 	}
 
 	public List<String> getResponsibilities() {
-		return responsibilities;
+		return Responsibilities;
 	}
 
 	public void setResponsibilities(List<String> responsibilities) {
-		this.responsibilities = responsibilities;
+		Responsibilities = responsibilities;
 	}
 
 }

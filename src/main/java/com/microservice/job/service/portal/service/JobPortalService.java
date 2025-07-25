@@ -1,10 +1,11 @@
 package com.microservice.job.service.portal.service;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microservice.job.service.portal.api.clients.RapidApiClient;
 import com.microservice.job.service.portal.entities.RapidAPIRecord;
 import com.microservice.job.service.portal.pojos.JobResponse;
@@ -15,21 +16,29 @@ public class JobPortalService {
 
 	@Autowired
 	private RapidApiClient rapidApiClient;
-	
+
 	@Autowired
 	private Mapper mapper;
 
 	@Autowired
 	private RapidAPIRecordRepository rapidAPIRecordRepository;
-	
+
 	public JobResponse callingRapidAPI() {
-		// Calling External Rapid API 
-		RapidAPIRecord callJobPortalExternalAPI = rapidApiClient.callJobPortalExternalAPI();
-		
-		// Saving the External API Response in DB [RapidAPIRecord] for Tracking Purpose
-		rapidAPIRecordRepository.save(callJobPortalExternalAPI);
-		
-		// Mapping Json Object to JobResponse Bean
-		return mapper.convertJsonToJobResponse(callJobPortalExternalAPI.getResponse());
+		RapidAPIRecord retrieveLastRecord = rapidAPIRecordRepository.retrieveLastRecordTime();
+
+		JobResponse callJobPortalExternalAPI = null;
+		Duration duration = Duration.between(retrieveLastRecord.getCreatedAt(), LocalDateTime.now());
+
+		/*
+		 * Invoke the external API at intervals of 30 minutes. If the last fetch
+		 * occurred less than 30 minutes ago, serve the data from the database instead.
+		 */
+		if (retrieveLastRecord == null || (retrieveLastRecord != null && duration.toMinutes()>=30)) {
+			// Calling External Rapid API
+			callJobPortalExternalAPI = rapidApiClient.callJobPortalExternalAPI();
+		} else {
+			callJobPortalExternalAPI = mapper.convertJsonToJobResponse(retrieveLastRecord.getResponse());
+		}
+		return callJobPortalExternalAPI;
 	}
 }
