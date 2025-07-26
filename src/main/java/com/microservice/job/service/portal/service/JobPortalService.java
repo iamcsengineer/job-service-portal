@@ -26,13 +26,11 @@ public class JobPortalService {
 	public JobResponse callingRapidAPI() {
 
 		JobResponse callJobPortalExternalAPI = null;
-		Duration duration = null;
-		
+		Duration duration = Duration.ZERO;
+
 		RapidAPIRecord retrieveLastRecord = rapidAPIRecordRepository.retrieveLastRecord();
 
-		if (retrieveLastRecord == null) {
-			duration = Duration.between(LocalDateTime.now(), LocalDateTime.now());
-		} else {
+		if (retrieveLastRecord != null) {
 			duration = Duration.between(retrieveLastRecord.getCreatedAt(), LocalDateTime.now());
 		}
 
