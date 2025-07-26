@@ -24,21 +24,30 @@ public class JobPortalService {
 	private RapidAPIRecordRepository rapidAPIRecordRepository;
 
 	public JobResponse callingRapidAPI() {
-		RapidAPIRecord retrieveLastRecord = rapidAPIRecordRepository.retrieveLastRecordTime();
 
 		JobResponse callJobPortalExternalAPI = null;
-		Duration duration = Duration.between(retrieveLastRecord.getCreatedAt(), LocalDateTime.now());
+		Duration duration = null;
+		
+		RapidAPIRecord retrieveLastRecord = rapidAPIRecordRepository.retrieveLastRecord();
+
+		if (retrieveLastRecord == null) {
+			duration = Duration.between(LocalDateTime.now(), LocalDateTime.now());
+		} else {
+			duration = Duration.between(retrieveLastRecord.getCreatedAt(), LocalDateTime.now());
+		}
 
 		/*
 		 * Invoke the external API at intervals of 30 minutes. If the last fetch
 		 * occurred less than 30 minutes ago, serve the data from the database instead.
 		 */
-		if (retrieveLastRecord == null || (retrieveLastRecord != null && duration.toMinutes()>=30)) {
+		if (duration.toMinutes() == 0 || duration.toMinutes() >= 30) {
 			// Calling External Rapid API
 			callJobPortalExternalAPI = rapidApiClient.callJobPortalExternalAPI();
 		} else {
+			// Fetching the data from DB.
 			callJobPortalExternalAPI = mapper.convertJsonToJobResponse(retrieveLastRecord.getResponse());
 		}
+
 		return callJobPortalExternalAPI;
 	}
 }
