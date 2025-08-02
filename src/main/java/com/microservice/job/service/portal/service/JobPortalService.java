@@ -10,6 +10,7 @@ import com.microservice.job.service.portal.api.clients.RapidApiClient;
 import com.microservice.job.service.portal.entities.RapidAPIRecord;
 import com.microservice.job.service.portal.pojos.JobResponse;
 import com.microservice.job.service.portal.repository.RapidAPIRecordRepository;
+import com.microservice.job.service.portal.ui.JobPortal;
 
 @Service
 public class JobPortalService {
@@ -23,7 +24,7 @@ public class JobPortalService {
 	@Autowired
 	private RapidAPIRecordRepository rapidAPIRecordRepository;
 
-	public JobResponse callingRapidAPI() {
+	public JobPortal callingRapidAPI() {
 
 		JobResponse callJobPortalExternalAPI = null;
 		Duration duration = Duration.ZERO;
@@ -45,7 +46,9 @@ public class JobPortalService {
 			// Fetching the data from DB.
 			callJobPortalExternalAPI = mapper.convertJsonToJobResponse(retrieveLastRecord.getResponse());
 		}
-
-		return callJobPortalExternalAPI;
+		
+		JobPortal convertJobResponseToJobPortal = mapper.convertJobResponseToJobPortal(callJobPortalExternalAPI);
+		
+		return convertJobResponseToJobPortal;
 	}
 }

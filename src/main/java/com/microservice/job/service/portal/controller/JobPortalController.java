@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.microservice.job.service.portal.pojos.JobResponse;
 import com.microservice.job.service.portal.service.JobPortalService;
+import com.microservice.job.service.portal.ui.JobPortal;
 
 @RestController
 @RequestMapping("/api")
@@ -16,7 +17,7 @@ public class JobPortalController {
 	private JobPortalService jobPortalService;
 	
 	@GetMapping("/job-search")
-	public JobResponse callingJobPortalService() {
+	public JobPortal callingJobPortalService() {
 		return jobPortalService.callingRapidAPI();
 		
 	}
