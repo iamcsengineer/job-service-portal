@@ -1,11 +1,17 @@
 package com.microservice.job.service.portal.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.microservice.job.service.portal.pojos.Job;
 import com.microservice.job.service.portal.pojos.JobResponse;
+import com.microservice.job.service.portal.ui.JobDetails;
+import com.microservice.job.service.portal.ui.JobPortal;
 
 @Component
 public class Mapper {
@@ -23,4 +29,24 @@ public class Mapper {
 		}
 		return jobResponse;
 	}
+	
+	public JobPortal convertJobResponseToJobPortal(JobResponse jobResponse) {
+		JobPortal jobPortal = new JobPortal();
+		List<JobDetails> jobDetailsList = new ArrayList();
+		for (Job job: jobResponse.getData()) {
+			JobDetails jobDetails = new JobDetails();
+			jobDetails.setJobTitle(job.getJob_title());
+			jobDetails.setEmployerName(job.getEmployer_name());
+			jobDetails.setEmployerLogo(job.getEmployer_logo());
+			jobDetails.setJobEmploymentType(job.getJob_employment_type());
+			jobDetails.setJobDescription(job.getJob_description());
+			jobDetails.setJobIsRemote(job.isJob_is_remote());
+			jobDetails.setJobPostedAt(job.getJob_posted_at());
+			jobDetails.setJobLocation(job.getJob_location());
+			jobDetailsList.add(jobDetails);
+		}
+		jobPortal.setJobDetails(jobDetailsList);
+		return jobPortal;
+	} 
+	
 }
