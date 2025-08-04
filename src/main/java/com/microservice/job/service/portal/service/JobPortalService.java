@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.microservice.job.service.portal.api.clients.RapidApiClient;
@@ -24,6 +25,7 @@ public class JobPortalService {
 	@Autowired
 	private RapidAPIRecordRepository rapidAPIRecordRepository;
 
+	@Cacheable(value = "jobPortalCache", key = "'latestJobs'")
 	public JobPortal callingRapidAPI() {
 
 		JobResponse callJobPortalExternalAPI = null;
