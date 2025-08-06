@@ -3,6 +3,7 @@ package com.microservice.job.service.portal.service;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+import com.microservice.job.service.portal.caching.CachingBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -25,13 +26,15 @@ public class JobPortalService {
 	@Autowired
 	private RapidAPIRecordRepository rapidAPIRecordRepository;
 
-	@Cacheable(value = "jobPortalCache", key = "'latestJobs'")
+	@Autowired
+	private CachingBuilder cachingBuilder;
+
 	public JobPortal callingRapidAPI() {
 
 		JobResponse callJobPortalExternalAPI = null;
 		Duration duration = Duration.ZERO;
 
-		RapidAPIRecord retrieveLastRecord = rapidAPIRecordRepository.retrieveLastRecord();
+		RapidAPIRecord retrieveLastRecord = cachingBuilder.retrieveLastRecordFromDB();
 
 		if (retrieveLastRecord != null) {
 			duration = Duration.between(retrieveLastRecord.getCreatedAt(), LocalDateTime.now());
