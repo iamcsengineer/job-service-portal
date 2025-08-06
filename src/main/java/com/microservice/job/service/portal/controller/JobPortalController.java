@@ -19,6 +19,5 @@ public class JobPortalController {
 	@GetMapping("/job-search")
 	public JobPortal callingJobPortalService() {
 		return jobPortalService.callingRapidAPI();
-		
 	}
 }
