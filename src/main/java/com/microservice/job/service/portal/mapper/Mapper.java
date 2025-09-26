@@ -1,4 +1,4 @@
-package com.microservice.job.service.portal.service;
+package com.microservice.job.service.portal.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +35,13 @@ public class Mapper {
 		List<JobDetails> jobDetailsList = new ArrayList();
 		for (Job job: jobResponse.getData()) {
 			JobDetails jobDetails = new JobDetails();
+			jobDetails.setJobId(job.getJob_id());
 			jobDetails.setJobTitle(job.getJob_title());
 			jobDetails.setEmployerName(job.getEmployer_name());
 			jobDetails.setEmployerLogo(job.getEmployer_logo());
+			jobDetails.setJobPublisher(job.getJob_publisher());
 			jobDetails.setJobEmploymentType(job.getJob_employment_type());
+			jobDetails.setJobApplyLink(job.getJob_apply_link());
 			jobDetails.setJobDescription(job.getJob_description());
 			jobDetails.setJobIsRemote(job.isJob_is_remote());
 			jobDetails.setJobPostedAt(job.getJob_posted_at());
