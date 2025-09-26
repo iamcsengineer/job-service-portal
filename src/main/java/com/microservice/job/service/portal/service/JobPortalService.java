@@ -2,10 +2,13 @@ package com.microservice.job.service.portal.service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.microservice.job.service.portal.api.clients.RapidApiClient;
 import com.microservice.job.service.portal.caching.CachingBuilder;
 import com.microservice.job.service.portal.entities.RapidAPIRecord;
@@ -25,10 +28,10 @@ public class JobPortalService {
 	@Autowired
 	private CachingBuilder cachingBuilder;
 
-	public JobPortal callingRapidAPI() {
+	public JobPortal callingRapidAPI() throws InterruptedException, ExecutionException, JsonProcessingException {
 
 		JobResponse callJobPortalExternalAPI = null;
-		
+
 		Long millisDuration = 0L;
 		Long minutesDuration = 0L;
 
@@ -45,7 +48,19 @@ public class JobPortalService {
 		 */
 		if (millisDuration == 0 || minutesDuration >= 30) {
 			// Calling External Rapid API
-			callJobPortalExternalAPI = rapidApiClient.callJobPortalExternalAPI();
+			
+			//@Async call for WFH/Remote Jobs
+			CompletableFuture<JobResponse> callJobPortalExternalAPIWithWFH = rapidApiClient
+					.callJobPortalExternalAPI(true);
+			
+			//@Async call for Non-WFH/Non-Remote Jobs
+			CompletableFuture<JobResponse> callJobPortalExternalAPIWithoutWFH = rapidApiClient
+					.callJobPortalExternalAPI(false);
+
+			//Combining Job's Objects
+			callJobPortalExternalAPI = mapper.combineRemoteJobObjectsWithNonRemoteJob(
+					callJobPortalExternalAPIWithWFH.get(), callJobPortalExternalAPIWithoutWFH.get());
+
 		} else {
 			// Fetching the data from DB.
 			callJobPortalExternalAPI = mapper.convertJsonToJobResponse(retrieveLastRecord.getResponse());

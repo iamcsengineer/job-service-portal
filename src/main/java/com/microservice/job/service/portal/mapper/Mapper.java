@@ -1,6 +1,5 @@
 package com.microservice.job.service.portal.mapper;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,6 +51,15 @@ public class Mapper {
 
 		jobPortal.setJobDetails(jobDetailsList);
 		return jobPortal;
+	}
+
+	public JobResponse combineRemoteJobObjectsWithNonRemoteJob(JobResponse jobResponse1, JobResponse jobResponse2) {
+		jobResponse1.getData().addAll(jobResponse2.getData());
+		return jobResponse1;
+	}
+	
+	public String convertJavaToJson(JobResponse JobResponse) throws JsonProcessingException {
+		return objectMapper.writeValueAsString(JobResponse);
 	}
 
 }
