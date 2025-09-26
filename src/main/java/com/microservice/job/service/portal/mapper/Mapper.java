@@ -1,7 +1,8 @@
-package com.microservice.job.service.portal.service;
+package com.microservice.job.service.portal.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,24 +30,28 @@ public class Mapper {
 		}
 		return jobResponse;
 	}
-	
+
 	public JobPortal convertJobResponseToJobPortal(JobResponse jobResponse) {
 		JobPortal jobPortal = new JobPortal();
-		List<JobDetails> jobDetailsList = new ArrayList();
-		for (Job job: jobResponse.getData()) {
+
+		List<JobDetails> jobDetailsList = jobResponse.getData().stream().map(job -> {
 			JobDetails jobDetails = new JobDetails();
+			jobDetails.setJobId(job.getJob_id());
 			jobDetails.setJobTitle(job.getJob_title());
 			jobDetails.setEmployerName(job.getEmployer_name());
 			jobDetails.setEmployerLogo(job.getEmployer_logo());
+			jobDetails.setJobPublisher(job.getJob_publisher());
 			jobDetails.setJobEmploymentType(job.getJob_employment_type());
+			jobDetails.setJobApplyLink(job.getJob_apply_link());
 			jobDetails.setJobDescription(job.getJob_description());
 			jobDetails.setJobIsRemote(job.isJob_is_remote());
 			jobDetails.setJobPostedAt(job.getJob_posted_at());
 			jobDetails.setJobLocation(job.getJob_location());
-			jobDetailsList.add(jobDetails);
-		}
+			return jobDetails;
+		}).collect(Collectors.toList());
+
 		jobPortal.setJobDetails(jobDetailsList);
 		return jobPortal;
-	} 
-	
+	}
+
 }
