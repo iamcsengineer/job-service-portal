@@ -2,12 +2,14 @@ package com.microservice.job.service.portal.api.clients;
 
 import java.net.URI;
 import java.time.LocalDateTime;
+import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -39,12 +41,13 @@ public class RapidApiClient {
 	@Value("${job-service-portal.headers.values}")
 	private String headerValues;
 
-	public JobResponse callJobPortalExternalAPI() {
+	@Async
+	public CompletableFuture<JobResponse>callJobPortalExternalAPI(boolean remoteJob) {
 
 		// Build dynamic URI
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl).queryParam("query", "developer jobs in pune")
 				.queryParam("page", 1).queryParam("num_pages", 1).queryParam("country", "india")
-				.queryParam("date_posted", "all").build().encode().toUri();
+				.queryParam("date_posted", "all").queryParam("work_from_home",remoteJob) .build().encode().toUri();
 
 		// Set headers from properties files
 		HttpHeaders headers = new HttpHeaders();
@@ -64,12 +67,13 @@ public class RapidApiClient {
 				rapidAPIRecord.setRequest(objectMapper.writeValueAsString(entity));
 				rapidAPIRecord.setResponse(objectMapper.writeValueAsString(jobResponse));
 				rapidAPIRecord.setCreatedAt(LocalDateTime.now());
+				rapidAPIRecord.setRemoteJob(remoteJob);
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
 			// Saving the External API Response in DB [RapidAPIRecord] for Tracking Purpose
 			rapidAPIRecordRepository.save(rapidAPIRecord);
 		}
-		return jobResponse;
+		return CompletableFuture.completedFuture(jobResponse);
 	}
 }

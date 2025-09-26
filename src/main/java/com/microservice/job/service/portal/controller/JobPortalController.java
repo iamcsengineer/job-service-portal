@@ -1,10 +1,13 @@
 package com.microservice.job.service.portal.controller;
 
+import java.util.concurrent.ExecutionException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.microservice.job.service.portal.pojos.JobResponse;
 import com.microservice.job.service.portal.service.JobPortalService;
 import com.microservice.job.service.portal.ui.JobPortal;
@@ -17,7 +20,7 @@ public class JobPortalController {
 	private JobPortalService jobPortalService;
 	
 	@GetMapping("/job-search")
-	public JobPortal callingJobPortalService() {
+	public JobPortal callingJobPortalService() throws InterruptedException, ExecutionException, JsonProcessingException {
 		return jobPortalService.callingRapidAPI();
 	}
 }

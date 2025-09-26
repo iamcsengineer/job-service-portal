@@ -19,6 +19,7 @@ public class RapidAPIRecord {
 	@Column(columnDefinition = "LONGTEXT")
 	private String response;
 	private LocalDateTime createdAt;
+	private boolean remoteJob;
 
 	public int getId() {
 		return id;
@@ -50,6 +51,14 @@ public class RapidAPIRecord {
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public boolean isRemoteJob() {
+		return remoteJob;
+	}
+
+	public void setRemoteJob(boolean remoteJob) {
+		this.remoteJob = remoteJob;
 	}
 
 }
